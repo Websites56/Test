@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "KoGaTools",
+  "version": "1.0.0",
+  "icons": {
+    "16": "icons/icon.png",
+    "48": "icons/icon.png",
+    "128": "icons/icon.png"
+  },
+  "description": "Enjoy KoGaMa with a few improvements and features to the website! This extension was created by Edgirl Gaming Studios and is no way affiliated with Multiverse ApS",
+  "permissions": [
+    "storage",
+    "scripting",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "*://www.kogama.com/*",
+    "*://friends.kogama.com/*",
+    "*://kogama.com.br/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://www.kogama.com/*", "*://friends.kogama.com/*", "*://kogama.com.br/*"],
+      "js": ["content.js", "cs_util.js", "textlimit.js"],
+      "css": ["general.css", "text.css"]
+    },
+    {
+      "matches": [
+        "https://*.kogama.com/profile/*",
+        "https://kogama.com.br/profile/*"
+      ],
+      "exclude_matches": [
+        "https://*.kogama.com/profile/*/edit/",
+        "https://kogama.com.br/profile/*/edit/"
+      ],
+      "js": [
+        "profileUtils.js",
+        "lastPlayedGame.js"
+      ],
+      "css": [
+        "profile.css"
+      ]
+    }
+  ],  
+"content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  }
+}
